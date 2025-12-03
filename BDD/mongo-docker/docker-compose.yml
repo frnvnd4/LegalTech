@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo_legaltech
+    ports:
+      - "27017:27017" # Mapea el puerto 27017 al host
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - mongo_data:/data/db # Volumen para la persistencia de datos
+    env_file:
+      - .env
+
+volumes:
+  mongo_data:
